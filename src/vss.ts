@@ -55,7 +55,7 @@ export class SimilaritySearch {
             dimensions: 128, // 指定向量维度（仅 text-embedding-v3 支持该参数）
             apiKey: token,
             configuration: {
-                baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+                baseURL: this.plugin.settings.apiBaseUrl,
             }
         });
 
@@ -159,7 +159,7 @@ export class VSS {
             dimensions: 512, // 指定向量维度（仅 text-embedding-v3 支持该参数）
             apiKey: token,
             configuration: {
-                baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+                baseURL: this.plugin.settings.apiBaseUrl,
             }
         });
 
@@ -261,7 +261,7 @@ export class VSS {
             dimensions: 512, // 指定向量维度（仅 text-embedding-v3 支持该参数）
             apiKey: token,
             configuration: {
-                baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+                baseURL: this.plugin.settings.apiBaseUrl,
             }
         });
 

@@ -81,6 +81,7 @@ https://github.com/user-attachments/assets/aa246889-0c32-4ce5-bde1-32eba813d034
 6. automatically update themes with one command
 7. automatically set color of graph view
 8. list all callouts css configuration for quickly inserting
+9. configurable LLM model name and endpoint
 
 ## Develop
 
