@@ -125,10 +125,11 @@ export class AssistantHelper {
     private async qwenLLM(query: string) {
         const token = await this.plugin.getAPIToken();
         const qwenMax = new ChatAlibabaTongyi({
-            model: "qwen-max", // Available models: qwen-turbo, qwen-plus, qwen-max
+            model: this.plugin.settings.modelName,
             temperature: 0.8,
             alibabaApiKey: token, // In Node.js defaults to process.env.ALIBABA_API_KEY
         });
+        qwenMax.apiUrl = this.plugin.settings.tongyiApiUrl;
 
         const systemTemplate = `你是一个专业编辑，擅长文字总结、概括等工作。
 **你的任务是：**
@@ -262,10 +263,11 @@ export class AssistantRobot {
     private async qwenLLM(messages: (SystemMessage | HumanMessage)[]) {
         const token = await this.plugin.getAPIToken();
         const qwenMax = new ChatAlibabaTongyi({
-            model: "qwen-max", // Available models: qwen-turbo, qwen-plus, qwen-max
+            model: this.plugin.settings.modelName,
             temperature: 0.8,
             alibabaApiKey: token, // In Node.js defaults to process.env.ALIBABA_API_KEY
         });
+        qwenMax.apiUrl = this.plugin.settings.tongyiApiUrl;
 
         const originFetch = globalThis.fetch
         const originHeaders = globalThis.Headers
@@ -456,10 +458,11 @@ export class AssistantFeaturedImageHelper {
     private async qwenLLMImageDes(query: string): Promise<string> {
         const token = await this.plugin.getAPIToken();
         const qwenMax = new ChatAlibabaTongyi({
-            model: "qwen-max", // Available models: qwen-turbo, qwen-plus, qwen-max
+            model: this.plugin.settings.modelName,
             temperature: 0.8,
             alibabaApiKey: token, // In Node.js defaults to process.env.ALIBABA_API_KEY
         });
+        qwenMax.apiUrl = this.plugin.settings.tongyiApiUrl;
 
         const systemTemplate = `你是一个精通文字编辑和图片处理的专家，你会根据我给出的文字内容生成一段图片描述，该图片会作为给出的文字内容的特色图片（特色图片featured image代表博客或页面的文字内容，情绪或主题，并在整个网站中使用）。
 ## 任务要求：

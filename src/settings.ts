@@ -50,6 +50,8 @@ export interface PluginManagerSettings {
     animation: boolean;
     modelName: string;
     apiToken: string;
+    apiBaseUrl: string;
+    tongyiApiUrl: string;
     featuredImagePath: string;
     numFeaturedImages: number;
     vssCacheExcludePath: string[];
@@ -104,6 +106,8 @@ export const DEFAULT_SETTINGS: PluginManagerSettings = {
     animation: false,
     modelName: "qwen-plus",
     apiToken: "sk-xxx",
+    apiBaseUrl: "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    tongyiApiUrl: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation",
     featuredImagePath: "9.src",
     numFeaturedImages: 2,
     vssCacheExcludePath: [".obsidian", "8.template", "9.src", "a.subjects", "b.notion"],
@@ -603,6 +607,28 @@ export class SettingTab extends PluginSettingTab {
                     this.plugin.settings.apiToken = data;
                     await this.plugin.saveSettings();
                 });
+            });
+        new Setting(containerEl)
+            .setName("LLM Base URL")
+            .setDesc("Base URL for OpenAI-compatible API endpoints")
+            .addText(text => {
+                text.setPlaceholder('https://dashscope.aliyuncs.com/compatible-mode/v1')
+                    .setValue(this.plugin.settings.apiBaseUrl)
+                    .onChange(async (value) => {
+                        this.plugin.settings.apiBaseUrl = value;
+                        await this.plugin.saveSettings();
+                    });
+            });
+        new Setting(containerEl)
+            .setName("Tongyi API URL")
+            .setDesc("Endpoint for Tongyi chat model")
+            .addText(text => {
+                text.setPlaceholder('https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation')
+                    .setValue(this.plugin.settings.tongyiApiUrl)
+                    .onChange(async (value) => {
+                        this.plugin.settings.tongyiApiUrl = value;
+                        await this.plugin.saveSettings();
+                    });
             });
         new Setting(containerEl)
             .setName("AI Featured Image Path")

@@ -44,10 +44,10 @@ export class LLMView extends ItemView {
     async onOpen() {
         const token = await this.plugin.getAPIToken();
         this.llm = new ChatOpenAI({
-            model: "qwen-max",
+            model: this.plugin.settings.modelName,
             apiKey: token,
             configuration: {
-                baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+                baseURL: this.plugin.settings.apiBaseUrl,
             },
             temperature: 0.8,
         });
